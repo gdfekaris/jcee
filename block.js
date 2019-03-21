@@ -12,9 +12,8 @@ class Block {
   }
 
   addTransaction(transaction) {
-    this.transaction.push(transaction);
+    this.transactions.push(transaction);
   }
-
 }
 
 module.exports = Block;
