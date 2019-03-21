@@ -1,9 +1,9 @@
 const sha256 = require('js-sha256');
 
 class Blockchain {
-  constructor(genesisBlock) {
+  constructor(genBlock) {
     this.blocks = [];
-    this.addBlock(genesisBlock);
+    this.addBlock(genBlock);
   }
 
   addBlock(block) {
@@ -20,9 +20,10 @@ class Blockchain {
   genHash(block) {
 
     let hash = sha256(block.key);
+    //let hash = sha256('[]');
     return hash;
 
   }
 }
 
-module.export = Blockchain;
+module.exports = Blockchain;
