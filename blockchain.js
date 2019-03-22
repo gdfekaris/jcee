@@ -18,12 +18,12 @@ class Blockchain {
 
   getNextBlock(transactions) {
     let block = new Block();
+    let prevBlock = this.getPrevBlock();
 
     transactions.forEach(function(transaction){
       block.addTransaction(transaction);
     })
 
-    let prevBlock = this.getPrevBlock();
     block.index = this.blocks.length;
     block.prevHash = prevBlock.hash;
     block.hash = this.genHash(block);

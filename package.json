@@ -11,12 +11,13 @@
     "url": "git+https://github.com/gdfekaris/cardsEngine.git"
   },
   "author": "gdf",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/gdfekaris/cardsEngine/issues"
   },
   "homepage": "https://github.com/gdfekaris/cardsEngine#readme",
   "dependencies": {
+    "express": "^4.16.4",
     "js-sha256": "^0.9.0"
   }
 }
