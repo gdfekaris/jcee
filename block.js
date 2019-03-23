@@ -1,19 +1,33 @@
+
+const { GENESIS_BLOCK } = require('./config');
+
 class Block {
-  constructor() {
-    this.index = 0;
-    this.prevHash = '';
-    this.hash = '';
-    this.nonce = 0;
-    this.transactions = [];
+  constructor({ timestamp, prevHash, hash, data }) {
+    this.timestamp = timestamp;
+    this.prevHash = prevHash;
+    this.hash = hash;
+    this.data = data;
   }
 
-  get key() {
-    return JSON.stringify(this.transactions) + this.index + this.prevHash + this.nonce;
+  static genesis() {
+    return new this(GENESIS_BLOCK);
   }
 
-  addTransaction(transaction) {
-    this.transactions.push(transaction);
+  static mineBlock({ prevBlock, data }) {
+    return new this({
+      timestamp: Date.now(),
+      prevHash: prevBlock.hash,
+      data
+    })
   }
+
+  // get key() {
+  //   return JSON.stringify(this.transactions) + this.index + this.prevHash + this.nonce;
+  // }
+
+  // addTransaction(transaction) {
+  //   this.transactions.push(transaction);
+  // }
 }
 
 module.exports = Block;
