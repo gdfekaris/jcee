@@ -1,4 +1,4 @@
-
+const cryptoHash = require('./crypto-hash');
 const { GENESIS_BLOCK } = require('./config');
 
 class Block {
@@ -14,11 +14,15 @@ class Block {
   }
 
   static mineBlock({ prevBlock, data }) {
+    const timestamp = Date.now();
+    const prevHash = prevBlock.hash;
+
     return new this({
-      timestamp: Date.now(),
-      prevHash: prevBlock.hash,
-      data
-    })
+      timestamp,
+      prevHash,
+      data,
+      hash: cryptoHash(timestamp, prevHash, data)
+    });
   }
 
   // get key() {
