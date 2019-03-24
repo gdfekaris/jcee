@@ -74,7 +74,6 @@ describe('Block', () => {
 
     it('adjusts the difficulty', () => {
       const possibleResults = [prevBlock.difficulty + 1, prevBlock.difficulty - 1];
-
       expect(possibleResults.includes(minedBlock.difficulty)).toBe(true);
     });
   });
@@ -94,9 +93,7 @@ describe('Block', () => {
 
     it('has a lower limit of 1', () => {
       block.difficulty = -1;
-
       expect(Block.adjustDifficulty({ originalBlock: block })).toEqual(1);
     })
   });
-
 });

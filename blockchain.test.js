@@ -8,7 +8,6 @@ describe('Blockchain', () => {
   beforeEach(() => {
     blockchain = new Blockchain();
     newChain = new Blockchain();
-
     originalChain = blockchain.chain;
   });
 
@@ -23,7 +22,6 @@ describe('Blockchain', () => {
   it('adds a new block to the chain', () => {
     const newData = 'Poems the Cat';
     blockchain.addBlock({ data: newData });
-
     expect(blockchain.chain[blockchain.chain.length-1].data).toEqual(newData);
   });
 
@@ -31,7 +29,6 @@ describe('Blockchain', () => {
     describe('when the chain does not start with the genesis block', () => {
       it('returns false', () => {
         blockchain.chain[0] = { data: 'fake-genesis' };
-
         expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
       });
     });
@@ -46,7 +43,6 @@ describe('Blockchain', () => {
       describe('and a prevHash reference has changed', () => {
         it('returns false', () => {
           blockchain.chain[2].prevHash = 'broken-prevHash';
-
           expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
         });
       });
@@ -54,7 +50,6 @@ describe('Blockchain', () => {
       describe('and the chain contains a block with an invalid field', () => {
         it('returns false', () => {
           blockchain.chain[2].data = 'basement-cat-data';
-
           expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
         });
       });
@@ -73,7 +68,6 @@ describe('Blockchain', () => {
           });
 
           blockchain.chain.push(badBlock);
-
           expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
         });
       });
@@ -99,7 +93,6 @@ describe('Blockchain', () => {
     describe('when the new chain is not longer', () => {
       beforeEach(() => {
         newChain.chain[0] = { new: 'chain' };
-
         blockchain.replaceChain(newChain.chain);
       });
 
@@ -122,7 +115,6 @@ describe('Blockchain', () => {
       describe('and the new chain is invalid', () => {
         beforeEach(() => {
           newChain.chain[2].hash = 'fakeness';
-
           blockchain.replaceChain(newChain.chain);
         });
 
