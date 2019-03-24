@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nod index.js",
+    "start": "node index.js",
+    "start-redis": "redis-server --daemonize yes",
     "test": "jest --watchAll",
     "mine-time-average": "node blockchain-core/average-work.js",
-    "dev": "nodemon index.js"
+    "dev": "npm run start-redis && nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
   "dependencies": {
     "express": "^4.16.4",
     "helmet": "^3.16.0",
-    "hex-to-binary": "^1.0.1"
+    "hex-to-binary": "^1.0.1",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "jest": "^24.5.0"

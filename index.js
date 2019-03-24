@@ -1,9 +1,13 @@
 const express = require('express');
 const helmet = require('helmet');
 const Blockchain = require('./blockchain-core/blockchain');
+const PubSub = require('./pubsub');
 
 const app = express();
 const blockchain = new Blockchain();
+const pubsub = new PubSub({ blockchain });
+
+setTimeout(() => pubsub.broadcastChain(), 1000);
 
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
