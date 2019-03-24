@@ -1,51 +1,55 @@
-const sha256 = require('js-sha256');
 const Block = require('./block');
+const cryptoHash = require('./crypto-hash');
 
 class Blockchain {
-  constructor(genBlock) {
-    this.blocks = [];
-    this.addBlock(genBlock);
+  constructor() {
+    this.chain = [Block.genesis()];
   }
 
-  addBlock(block) {
-    if(this.blocks.length == 0) {
-      block.prevHash = '0000000000000000';
-      block.hash = this.genHash(block);
+  addBlock({ data }) {
+    const newBlock = Block.mineBlock({
+      prevBlock: this.chain[this.chain.length-1],
+      data
+    });
+
+    this.chain.push(newBlock);
+  }
+
+  replaceChain(chain) {
+    if (chain.length <= this.chain.length) {
+      console.error('The incoming chain is not longer');
+      return;
     }
 
-    this.blocks.push(block);
-  }
-
-  getNextBlock(transactions) {
-    let block = new Block();
-    let prevBlock = this.getPrevBlock();
-
-    transactions.forEach(function(transaction){
-      block.addTransaction(transaction);
-    })
-
-    block.index = this.blocks.length;
-    block.prevHash = prevBlock.hash;
-    block.hash = this.genHash(block);
-
-    return block;
-  }
-
-  getPrevBlock() {
-    return this.blocks[this.blocks.length -1];
-  }
-
-  genHash(block) {
-    let hash = sha256(block.key);
-
-    while(!hash.startsWith('000')) {
-      block.nonce += 1;
-      hash = sha256(block.key);
-      console.log(hash);
+    if (!Blockchain.isValidChain(chain)) {
+      console.error('The incoming chain is not valid');
+      return;
     }
 
-    return hash;
+    console.log('replacing chain with: ', chain)
+    this.chain = chain;
   }
+
+  static isValidChain(chain) {
+    if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) {
+      return false;
+    };
+
+    for (let i = 1; i < chain.length; i++) {
+      const { timestamp, prevHash, hash, data } = chain[i];
+
+      const actualPrevHash = chain[i -1].hash;
+
+      if (prevHash !== actualPrevHash) return false;
+
+      const validatedHash = cryptoHash(timestamp, prevHash, data);
+
+      if (hash !== validatedHash) return false;
+    }
+
+    return true;
+  }
+
 }
 
 module.exports = Blockchain;
