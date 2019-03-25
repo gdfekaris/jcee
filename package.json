@@ -11,6 +11,9 @@
     "dev": "npm run start-redis && nodemon index.js",
     "dev-peer": "cross-env GENERATE_PEER_PORT='true' nodemon index.js"
   },
+  "jest": {
+     "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gdfekaris/cardsEngine.git"
@@ -22,6 +25,7 @@
   },
   "homepage": "https://github.com/gdfekaris/cardsEngine#readme",
   "dependencies": {
+    "elliptic": "^6.4.1",
     "express": "^4.16.4",
     "helmet": "^3.16.0",
     "hex-to-binary": "^1.0.1",
