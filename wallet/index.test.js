@@ -37,7 +37,6 @@ describe('Wallet', () => {
           signature: new Wallet().sign(data)
         })
       ).toBe(false);
-
     });
   });
 });
