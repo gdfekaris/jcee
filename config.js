@@ -11,5 +11,25 @@ const GENESIS_BLOCK = {
 };
 
 const STARTING_BALANCE = 1000;
+const REWARD_INPUT = { address: '*authorized-reward*' };
+const MINING_REWARD = 50;
+const REWARD_CARD = 'cheezburger_cat';
 
-module.exports = { GENESIS_BLOCK, MINE_RATE, STARTING_BALANCE };
+const STARTER_DECK = [
+  'ceiling_cat',
+  'basement_cat',
+  'monorail_cat',
+  'serious_cat',
+  'laughing_cat',
+  'mr_cuddles'
+];
+
+module.exports = {
+  GENESIS_BLOCK,
+  MINE_RATE,
+  STARTING_BALANCE,
+  REWARD_INPUT,
+  MINING_REWARD,
+  STARTER_DECK,
+  REWARD_CARD
+};
