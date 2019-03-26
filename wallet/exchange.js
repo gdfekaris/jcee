@@ -51,7 +51,7 @@ class Exchange {
   static validExchange(exchange) {
     const { input: { address, cards, signature }, outputMap } = exchange;
 
-    const outputTotal = Object.values(outputMap);
+    //const outputTotal = Object.values(outputMap);
 
     //console.log('--------->', outputTotal);
 
