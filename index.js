@@ -143,6 +143,9 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
 const PORT = PEER_PORT || DEFAULT_PORT;
 app.listen(PORT, () => {
   console.log(`listening at localhost:${PORT}`);
+  console.log(`Wallet public key: ${wallet.publicKey}`);
+  console.log(`starter deck: ${wallet.deck}`);
+  console.log(`balance: ${wallet.balance}`);
 
   if (PORT !== DEFAULT_PORT) {
     syncWithRootState();
