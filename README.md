@@ -1,3 +1,5 @@
-# JCEE
+# JavaScript Card Exchange Engine (JCEE)
 
-## JavaScript Card Exchange Engine is a blockchain based
+## A blockchain app for trading card game creators.
+
+JCEE manages card ownership and rarity for your game's players. The app is still in development, so check back here later for more info.
