@@ -28,6 +28,11 @@
   },
   "homepage": "https://github.com/gdfekaris/cardsEngine#readme",
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "elliptic": "^6.4.1",
     "express": "^4.16.4",
     "helmet": "^3.16.0",
